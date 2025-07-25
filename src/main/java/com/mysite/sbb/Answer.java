@@ -21,7 +21,7 @@ public class Answer {
 
     private LocalDateTime createDate;
 
-    //하나에 Qeusttion에 여러개의 answer가 달릴수 잇음을 알리는것
+    //하나에 Question에 여러개의 answer가 달릴수 잇음을 알리는것
     @ManyToOne
     private Question question;
 }
