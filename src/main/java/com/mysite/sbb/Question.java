@@ -15,7 +15,7 @@ public class Question {
     //GeneratedValue 는 자동생성을 의미한다
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     //length = 200 는 varchar와 동일하다
     @Column(length = 200)
