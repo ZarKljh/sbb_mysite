@@ -1,0 +1,4 @@
+package com.mysite.sbb.Answer;
+
+public class AnswerController {
+}
