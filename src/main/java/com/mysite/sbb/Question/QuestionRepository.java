@@ -1,13 +1,11 @@
-package com.mysite.sbb;
+package com.mysite.sbb.Question;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//public class QuestionRepository {
-//
-//}
+
 
 //jpa에서 만들어져있는 리포지터리를 상속받아야한다
 @Repository

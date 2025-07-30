@@ -1,9 +1,14 @@
 package com.mysite.sbb;
 
+import com.mysite.sbb.Answer.Answer;
+import com.mysite.sbb.Answer.AnswerRepository;
+import com.mysite.sbb.Question.Question;
+import com.mysite.sbb.Question.QuestionRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -101,6 +106,9 @@ class SbbApplicationTests {
 		assertEquals(2, a.getQuestion().getId());
 	}
 	@Transactional
+	@Rollback(false)
+	//@Transactional는 기본적으로 코드가 실행된후에 데이터를 롤백시킨다. @RollBack(true)
+	//만약 롤백을 원하지 않는다면, @RollBack(false) 로 바꿔주면 데이터가 롤백되지 않는다.
 	@Test
 	void TestJpa2_3(){
 		Optional<Question> oq = this.questionRepository.findById(2);
