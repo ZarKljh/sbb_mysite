@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Service
 public class AnswerService {
-    private AnswerRepository answerRepository;
+
+    private final AnswerRepository answerRepository;
 
     public void crate(Question question, String content){
         Answer answer = new Answer();
@@ -17,6 +18,6 @@ public class AnswerService {
         answer.setQuestion(question);
         answer.setCreateDate(LocalDateTime.now());
 
-        answerRepository.save(answer);
+        this.answerRepository.save(answer);
     }
 }
