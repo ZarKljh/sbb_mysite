@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class QuestionController {
     //@RequiredArgsConstructor으로 인해 생성자가 자동으로 만들어진다
     //@RequiredArgsConstructor을 사용하기 위해서는 final을 꼭 붙여줘야한다.
-    private final QuestionRepository questionRepository;
+    private final QuestionService questionService;
 
     @GetMapping("/question/list")
     //@ResponseBody
@@ -22,10 +23,17 @@ public class QuestionController {
         //현재는 @ResponseBody 어노테이션이 없기 때문에
         //Spring은 queestion List라는 이름의 템플릿을 찾아서 화면에 출력해준다
 
-        List<Question> questionList = this.questionRepository.findAll();
+        List<Question> questionList = this.questionService.getList();
 
         model.addAttribute("questionList", questionList);
 
         return "question_list";
     }
+    @GetMapping("question/detail/{id}")
+    public String getQuestion(Model model, @PathVariable("id") Integer id){
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question", question);
+        return "question_detail";
+    }
 }
+
