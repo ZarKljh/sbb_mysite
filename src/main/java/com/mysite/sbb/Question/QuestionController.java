@@ -3,12 +3,11 @@ package com.mysite.sbb.Question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RequestMapping("/question")
 @RequiredArgsConstructor
 //생성자를 자동으로 생성해주는 어노테이션이다
 @Controller
@@ -17,7 +16,7 @@ public class QuestionController {
     //@RequiredArgsConstructor을 사용하기 위해서는 final을 꼭 붙여줘야한다.
     private final QuestionService questionService;
 
-    @GetMapping("/question/list")
+    @GetMapping("/list")
     //@ResponseBody
     public String list(Model model){
         //현재는 @ResponseBody 어노테이션이 없기 때문에
@@ -29,11 +28,17 @@ public class QuestionController {
 
         return "question_list";
     }
-    @GetMapping("question/detail/{id}")
+    @GetMapping(value = "/detail/{id}")
     public String getQuestion(Model model, @PathVariable("id") Integer id){
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
+    }
+
+    @PostMapping("/create/{id}")
+    @ResponseBody
+    public String createQuestion(){
+        return "Answer create Complete";
     }
 }
 
