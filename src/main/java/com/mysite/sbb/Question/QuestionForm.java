@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QuestionForm {
+    //어노테이션에 message="제목은 필수항목입니다." 같은 에러메세지를 추가할수 있ㅏ
     @NotEmpty(message="제목은 필수항목입니다.")
     @Size(max=200)
     private String subject;
