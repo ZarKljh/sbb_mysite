@@ -39,12 +39,15 @@ public class UserController {
             bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
             return "signup_form";
         } catch (Exception e) {
+            //서버로그에 에러메세지를 더 상세하게 표시해주는 명령어
             e.printStackTrace();
             bindingResult.reject("signupFailed", e.getMessage());
             return "signup_form";
         }
-
-
         return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
+    }
+    @GetMapping("/login")
+    public String login() {
+        return "login_form";
     }
 }

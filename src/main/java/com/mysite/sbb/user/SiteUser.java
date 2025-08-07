@@ -12,6 +12,7 @@ public class SiteUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //unique를 걸어놨다.
     @Column(unique = true)
     private String username;
 
