@@ -1,6 +1,7 @@
 package com.mysite.sbb.Question;
 
 import com.mysite.sbb.Answer.Answer;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +32,7 @@ public class Question {
     //Cascade 질문이 없이지면 답변도 같이 삭제하겠다는 것을 알리는 것
     @OneToMany(mappedBy = "question" ,  cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
 }

@@ -1,6 +1,7 @@
 package com.mysite.sbb.Answer;
 
 import com.mysite.sbb.Question.Question;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,5 +26,8 @@ public class Answer {
     //하나에 Question에 여러개의 answer가 달릴수 잇음을 알리는것
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }
 
