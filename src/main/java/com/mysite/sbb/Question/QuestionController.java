@@ -28,14 +28,16 @@ public class QuestionController {
 
     @GetMapping("/list")
     //@ResponseBody
-    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page){
+    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page, @RequestParam(value = "kw", defaultValue = "") String kw ){
         //현재는 @ResponseBody 어노테이션이 없기 때문에
         //Spring은 queestion List라는 이름의 템플릿을 찾아서 화면에 출력해준다
 
-        Page<Question> paging = this.questionService.getList(page);
+        Page<Question> paging = this.questionService.getList(page, kw);
         model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
         return "question_list";
     }
+
     @GetMapping(value = "/detail/{id}")
     public String getQuestion(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
         Question question = this.questionService.getQuestion(id);
@@ -100,6 +102,7 @@ public class QuestionController {
         this.questionService.delete(question);
         return "redirect:/question/list";
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/vote/{id}")
     public String voteQuestion(Principal principal, @PathVariable("id") Integer id){
